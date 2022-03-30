@@ -41,6 +41,7 @@ exports.getCourse = async (req, res) => {
   // }
   //   });
 };
+
 exports.getSingleCourse = async (req, res) => {
   CourseModel.findOne({ _id: req.body.id }, (err, data) => {
     if (err) {
