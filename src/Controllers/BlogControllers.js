@@ -1,8 +1,7 @@
-const instructorModel = require("../Models/instructorModel");
+const BlogModel = require("../Models/BlogModel");
 
-exports.addInstructor = async (req, res) => {
-  instructorModel.create(req.body, (err, data) => {
-    console.log(req.body);
+exports.addBlog = async (req, res) => {
+  BlogModel.create(req.body, (err, data) => {
     if (err) {
       res.status(400).json({
         error: true,
@@ -17,8 +16,8 @@ exports.addInstructor = async (req, res) => {
   });
 };
 
-exports.getInstructor = async (req, res) => {
-  instructorModel.find({}, (err, data) => {
+exports.getBlog = async (req, res) => {
+  BlogModel.find({}, (err, data) => {
     if (err) {
       res.status(400).json({
         error: true,
