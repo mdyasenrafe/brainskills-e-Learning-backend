@@ -10,7 +10,6 @@ const CourseSchema = new Schema({
     type: String,
     required: true,
   },
-
   coursePrice: {
     type: String,
     required: true,
@@ -25,7 +24,6 @@ const CourseSchema = new Schema({
   courseLongDescription: {
     type: String,
   },
-
   instructorDetail: [
     {
       instructorName: {
