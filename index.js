@@ -6,6 +6,8 @@ const bodyParser = require("body-parser");
 const courseRoute = require("./src/View/CourseRoute");
 const instructorRoute = require("./src/View/InstructorRoute");
 const blogRoute = require("./src/View/BlogRoute");
+const reviewRoute = require("./src/View/ReviewRoute");
+const eventRoute = require("./src/View/EventRoute");
 
 require("dotenv").config();
 const port = process.env.PORT || 5000;
@@ -32,6 +34,8 @@ mongoose
 app.use("/course", courseRoute);
 app.use("/instructor", instructorRoute);
 app.use("/blog", blogRoute);
+app.use("/review", reviewRoute);
+app.use("/event", eventRoute);
 
 // cors error resolve
 app.all("*", function (req, res, next) {
