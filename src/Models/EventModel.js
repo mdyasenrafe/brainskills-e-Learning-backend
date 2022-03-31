@@ -14,6 +14,10 @@ const EventSchema = new Schema({
         type: String,
         require: true
     },
+     eventSpeaker: {
+        type: String,
+        require: true
+    },
     eventDate: {
         type: Date,
         require: true
