@@ -22,8 +22,7 @@ const BlogSchema = new Schema({
     required: true,
   },
   blogLongdescription: {
-    type: Date,
-    default: new Date(),
+    type: String,
   },
 });
 
