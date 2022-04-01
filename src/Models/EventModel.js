@@ -10,10 +10,6 @@ const EventSchema = new Schema({
     type: String,
     require: true,
   },
-  eventDescription: {
-    type: String,
-    require: true,
-  },
   eventDate: {
     type: Date,
     require: true,
