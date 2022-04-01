@@ -2,6 +2,7 @@ const EventModel = require("../Models/EventModel");
 
 // add event
 exports.addEvent = async (req, res) => {
+  console.log(req.body);
   EventModel.create(req.body, (err, data) => {
     if (err) {
       res.status(400).json({
