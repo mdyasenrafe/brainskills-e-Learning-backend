@@ -15,7 +15,7 @@ const EventSchema = new Schema({
     require: true,
   },
   speaker: {
-    type: Date,
+    type: String,
     require: true,
   },
 });
