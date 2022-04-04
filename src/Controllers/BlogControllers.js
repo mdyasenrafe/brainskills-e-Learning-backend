@@ -1,6 +1,7 @@
 const BlogModel = require("../Models/BlogModel");
 
 exports.addBlog = async (req, res) => {
+  // create
   BlogModel.create(req.body, (err, data) => {
     if (err) {
       res.status(400).json({
