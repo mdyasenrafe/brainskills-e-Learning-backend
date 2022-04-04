@@ -1,9 +1,14 @@
 const express = require("express");
-const { addAceount } = require("../Controllers/UserControllers");
+const {
+  signUpUser,
+  updateUser,
+  loginUser,
+} = require("../Controllers/UserControllers");
 
 const router = express.Router();
 
-router.post("/addAceount", addAceount);
-router.post("/verifyAceount");
+router.post("/signup", signUpUser);
+router.post("/verifyAceount", updateUser);
+router.post("/signin", loginUser);
 
 module.exports = router;
