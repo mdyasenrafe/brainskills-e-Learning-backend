@@ -8,6 +8,7 @@ const instructorRoute = require("./src/View/InstructorRoute");
 const blogRoute = require("./src/View/BlogRoute");
 const reviewRoute = require("./src/View/ReviewRoute");
 const eventRoute = require("./src/View/EventRoute");
+const userRoute = require("./src/View/UserRoute");
 
 require("dotenv").config();
 const port = process.env.PORT || 5000;
@@ -36,6 +37,7 @@ app.use("/instructor", instructorRoute);
 app.use("/blog", blogRoute);
 app.use("/review", reviewRoute);
 app.use("/event", eventRoute);
+app.use("/signin", userRoute);
 
 // cors error resolve
 app.all("*", function (req, res, next) {
