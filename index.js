@@ -4,6 +4,11 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 // file
 const courseRoute = require("./src/View/CourseRoute");
+const instructorRoute = require("./src/View/InstructorRoute");
+const blogRoute = require("./src/View/BlogRoute");
+const reviewRoute = require("./src/View/ReviewRoute");
+const eventRoute = require("./src/View/EventRoute");
+const userRoute = require("./src/View/UserRoute");
 
 require("dotenv").config();
 const port = process.env.PORT || 5000;
@@ -19,7 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 
 mongoose
   .connect(
-    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.ivs2y.mongodb.net/brainSkill?retryWrites=true&w=majorit`
+    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.ivs2y.mongodb.net/brainSkill?retryWrites=true&w=majority`
   )
   .then(() => {
     console.log("Mongodb connected....");
@@ -28,6 +33,11 @@ mongoose
 
 // routing
 app.use("/course", courseRoute);
+app.use("/instructor", instructorRoute);
+app.use("/blog", blogRoute);
+app.use("/review", reviewRoute);
+app.use("/event", eventRoute);
+app.use("/signin", userRoute);
 
 // cors error resolve
 app.all("*", function (req, res, next) {
