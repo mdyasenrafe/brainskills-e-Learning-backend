@@ -23,29 +23,13 @@ const CartSchema = new Schema({
         required: true,
     },
     coursePhoto: {
-        type: Boolean,
+        type: String,
         required: true,
     },
     createAt: {
         type: Date,
         default: new Date(),
     },
-    instructorDetail: [
-        {
-            instructorName: {
-                type: String,
-            },
-            instructorPhoto: {
-                type: String,
-            },
-            instructorDesignation: {
-                type: String,
-            },
-            instructorDetail: {
-                type: String,
-            },
-        },
-    ],
 });
 
 const CartModel = mongoose.model("cart", CartSchema);
