@@ -18,6 +18,10 @@ const CourseSchema = new Schema({
     type: Date,
     default: new Date(),
   },
+  courseCategroy: {
+    type: String,
+    required: true,
+  },
   courseShortDescription: {
     type: String,
   },
