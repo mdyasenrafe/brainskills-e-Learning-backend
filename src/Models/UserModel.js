@@ -21,6 +21,10 @@ const UserSchema = new Schema({
     type: String,
     default: "student",
   },
+  role: {
+    type: String,
+    default: "https://i.ibb.co/MGMchh7/925px-Unknown-person.jpg",
+  },
   status: {
     type: String,
     default: "unverified",

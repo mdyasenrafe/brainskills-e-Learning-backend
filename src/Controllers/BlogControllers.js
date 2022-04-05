@@ -13,6 +13,7 @@ exports.addBlog = async (req, res) => {
         error: false,
         message: data,
       });
+      ``;
     }
   });
 };

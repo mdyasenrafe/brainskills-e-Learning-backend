@@ -100,8 +100,8 @@ exports.loginUser = async (req, res) => {
     async (err, item) => {
       if (item?.userPhoneNumber) {
         const ValidPassword = await bcrypt.compare(
-          req.body.password,
-          item.password
+          req.body.userPassword,
+          item.userPassword
         );
         if (ValidPassword) {
           if (item.status === "verified") {
