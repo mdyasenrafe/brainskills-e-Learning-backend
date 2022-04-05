@@ -28,7 +28,7 @@ exports.signUpUser = async (req, res) => {
     if (item.length === 0) {
       UserModel.create(postBody, async (err, data) => {
         if (err) {
-          res.status(400).json({ error: true, message: err });
+          res.status(401).json({ error: true, message: err });
         } else {
           res.status(200).json({
             error: false,
@@ -39,7 +39,7 @@ exports.signUpUser = async (req, res) => {
       });
     } else {
       res
-        .status(400)
+        .status(401)
         .json({ error: true, message: "Already added in this phonenumber" });
     }
   });
@@ -85,10 +85,10 @@ exports.updateUser = async (req, res) => {
             }
           );
         } else {
-          res.status(400).json({ error: true, message: "Wrong Code" });
+          res.status(401).json({ error: true, message: "Wrong Code" });
         }
       } else {
-        res.status(400).json({ error: true, message: "Nothing Found" });
+        res.status(401).json({ error: true, message: "Nothing Found" });
       }
     }
   );
@@ -133,7 +133,7 @@ exports.loginUser = async (req, res) => {
               (err, data) => {
                 if (err) {
                   res
-                    .status(400)
+                    .status(401)
                     .json({ error: true, message: "Nothing Found" });
                 } else {
                   if (data?.modifiedCount > 0) {
@@ -145,7 +145,7 @@ exports.loginUser = async (req, res) => {
                       code: code,
                     });
                   } else {
-                    res.status(400).json({
+                    res.status(401).json({
                       error: true,
                       message: "something went wrong try agian",
                     });
@@ -156,11 +156,11 @@ exports.loginUser = async (req, res) => {
           }
         } else {
           res
-            .status(400)
+            .status(401)
             .json({ error: true, message: "wrong authentication" });
         }
       } else {
-        res.status(400).json({ error: true, message: "Nothing Found" });
+        res.status(401).json({ error: true, message: "Nothing Found" });
       }
     }
   );
