@@ -165,3 +165,19 @@ exports.loginUser = async (req, res) => {
     }
   );
 };
+exports.getUser = async (req, res) => {
+  UserModel.findOne(
+    { userPhoneNumber: req.userPhoneNumber, _id: req.id },
+    async (err, item) => {
+      if (item?.userPhoneNumber) {
+        res.status(400).json({
+          error: false,
+          data: item,
+          message: "data fetch successfully",
+        });
+      } else {
+        res.status(400).json({ error: true, message: "Nothing Found" });
+      }
+    }
+  );
+};
