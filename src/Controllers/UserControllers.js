@@ -171,7 +171,7 @@ exports.getUser = async (req, res) => {
     { userPhoneNumber: req.userPhoneNumber, _id: req.id },
     async (err, item) => {
       if (item?.userPhoneNumber) {
-        res.status(400).json({
+        res.status(200).json({
           error: false,
           data: item,
           message: "data fetch successfully",
