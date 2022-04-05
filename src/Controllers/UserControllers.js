@@ -165,6 +165,7 @@ exports.loginUser = async (req, res) => {
     }
   );
 };
+// get user
 exports.getUser = async (req, res) => {
   UserModel.findOne(
     { userPhoneNumber: req.userPhoneNumber, _id: req.id },
