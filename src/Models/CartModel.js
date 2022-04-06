@@ -7,7 +7,7 @@ const CartSchema = new Schema({
     required: true,
   },
   userId: {
-    type: Number,
+    type: String,
     required: true,
   },
   userPhoneNumber: {
@@ -15,7 +15,7 @@ const CartSchema = new Schema({
     required: true,
   },
   courseId: {
-    type: Number,
+    type: String,
     required: true,
   },
   courseName: {
