@@ -2,7 +2,7 @@ const DashboardModel = require("../Models/DashboardModel");
 
 exports.getDashboard = async (req, res) => {
   DashboardModel.find(
-    { userPhoneNumber: req.userPhoneNumber, _id: req.id },
+    { userPhoneNumber: req.userPhoneNumber, userId: req.id },
     (err, data) => {
       if (err) {
         res.status(400).json({
