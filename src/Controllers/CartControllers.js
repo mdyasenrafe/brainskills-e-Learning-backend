@@ -19,7 +19,7 @@ exports.addCart = async (req, res) => {
 
 exports.getCart = async (req, res) => {
   CartModel.find(
-    { userPhoneNumber: req.userPhoneNumber, _id: req.id },
+    { userPhoneNumber: req.userPhoneNumber, _id: req.userId },
     (err, data) => {
       if (err) {
         res.status(400).json({
