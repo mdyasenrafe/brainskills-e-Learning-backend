@@ -38,7 +38,7 @@ const UserSchema = new Schema({
   },
   purchaseHistories: [
     {
-      courseTitle: {
+      courseName: {
         type: String,
       },
       courseId: {

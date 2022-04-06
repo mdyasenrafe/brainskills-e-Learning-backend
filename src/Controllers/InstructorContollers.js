@@ -2,7 +2,6 @@ const instructorModel = require("../Models/instructorModel");
 
 exports.addInstructor = async (req, res) => {
   instructorModel.create(req.body, (err, data) => {
-    console.log(req.body);
     if (err) {
       res.status(400).json({
         error: true,

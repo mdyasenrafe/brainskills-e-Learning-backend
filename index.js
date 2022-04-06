@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+
 // file
 const courseRoute = require("./src/View/CourseRoute");
 const instructorRoute = require("./src/View/InstructorRoute");
@@ -10,6 +11,7 @@ const reviewRoute = require("./src/View/ReviewRoute");
 const eventRoute = require("./src/View/EventRoute");
 const userRoute = require("./src/View/UserRoute");
 const cartRoute = require("./src/View/CartRoute");
+const check = require("./src/View/CheckRoute");
 
 require("dotenv").config();
 const port = process.env.PORT || 5000;
@@ -40,6 +42,7 @@ app.use("/review", reviewRoute);
 app.use("/event", eventRoute);
 app.use("/signin", userRoute);
 app.use("/cart", cartRoute);
+app.use("/check", check);
 
 // cors error resolve
 app.all("*", function (req, res, next) {
@@ -57,9 +60,7 @@ app.get("/", (req, res) => {
 
 // Undefined Route Implement
 app.use((req, res, next) => {
-  res
-    .status(404)
-    .json({ status: 404, error: true, message: "Not Found this route" });
+  res.status(404).json({ error: true, message: "Not Found this route" });
 });
 
 //   test

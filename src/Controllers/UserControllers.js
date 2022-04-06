@@ -25,22 +25,29 @@ exports.signUpUser = async (req, res) => {
   };
 
   UserModel.find({ userPhoneNumber: req.body.userPhoneNumber }, (err, item) => {
-    if (item.length === 0) {
-      UserModel.create(postBody, async (err, data) => {
-        if (err) {
-          res.status(401).json({ error: true, message: err });
-        } else {
-          res.status(200).json({
-            error: false,
-            message: "created successfully",
-            data: data,
-          });
-        }
+    if (err) {
+      res.status(400).json({
+        error: true,
+        message: err,
       });
     } else {
-      res
-        .status(401)
-        .json({ error: true, message: "Already added in this phonenumber" });
+      if (item.length === 0) {
+        UserModel.create(postBody, async (err, data) => {
+          if (err) {
+            res.status(401).json({ error: true, message: err });
+          } else {
+            res.status(200).json({
+              error: false,
+              message: "created successfully",
+              data: data,
+            });
+          }
+        });
+      } else {
+        res
+          .status(200)
+          .json({ error: true, message: "Already added in this phonenumber" });
+      }
     }
   });
 };
@@ -50,6 +57,7 @@ exports.updateUser = async (req, res) => {
     status: "verified",
     code: "",
   };
+
   UserModel.findOne(
     {
       userEmail: req.body.userEmail,
@@ -85,10 +93,10 @@ exports.updateUser = async (req, res) => {
             }
           );
         } else {
-          res.status(401).json({ error: true, message: "Wrong Code" });
+          res.status(200).json({ error: true, message: "Wrong Code" });
         }
       } else {
-        res.status(401).json({ error: true, message: "Nothing Found" });
+        res.status(200).json({ error: true, message: "Nothing Found" });
       }
     }
   );
@@ -132,12 +140,10 @@ exports.loginUser = async (req, res) => {
               { $set: updatebody },
               (err, data) => {
                 if (err) {
-                  res
-                    .status(401)
-                    .json({ error: true, message: "Nothing Found" });
+                  res.status(400).json({ error: true, message: err });
                 } else {
                   if (data?.modifiedCount > 0) {
-                    res.status(400).json({
+                    res.status(200).json({
                       error: true,
                       link: `verify/${item.id} `,
                       email: item?.email,
@@ -145,7 +151,7 @@ exports.loginUser = async (req, res) => {
                       code: code,
                     });
                   } else {
-                    res.status(401).json({
+                    res.status(200).json({
                       error: true,
                       message: "something went wrong try agian",
                     });
@@ -156,11 +162,11 @@ exports.loginUser = async (req, res) => {
           }
         } else {
           res
-            .status(401)
+            .status(200)
             .json({ error: true, message: "wrong authentication" });
         }
       } else {
-        res.status(401).json({ error: true, message: "Nothing Found" });
+        res.status(200).json({ error: true, message: "Nothing Found" });
       }
     }
   );
@@ -181,4 +187,9 @@ exports.getUser = async (req, res) => {
       }
     }
   );
+};
+
+exports.getMethod = async (req, res) => {
+  console.log(req.body);
+  res.status(200).send("this is get method by controller file");
 };

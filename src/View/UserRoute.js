@@ -4,6 +4,7 @@ const {
   updateUser,
   loginUser,
   getUser,
+  getMethod,
 } = require("../Controllers/UserControllers");
 const checkLogin = require("../Middleware/CheckLogin");
 

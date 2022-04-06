@@ -85,17 +85,9 @@ exports.succesPayment = async (req, res) => {
     (err, info) => {
       console.log(err, info);
       transactionModel.findOne({ tran_id: req.body.tran_id }, (err, data) => {
-        console.log(data, err);
-        let updateBody = {
-          studentMonth: 0,
-          studentTotalAmount: 0,
-          due: data.remainingMonth,
-          paid: data?.paidHistory + data?.studentMonth,
-          totalDueAmount: data?.remainingMonth * data.totalAmount,
-        };
         CartModel.deleteMany(
           {
-            _id: u,
+            _id: data.userId,
           },
           (err, item) => {
             console.log(err, item);
@@ -109,30 +101,6 @@ exports.succesPayment = async (req, res) => {
   );
 
   res.redirect(`http://localhost:3000/payment/success/${req.body.tran_id}`);
-};
-// get success payment data
-exports.getSuccesPayment = async (req, res) => {
-  const query = req.params.id;
-  TransactionModel.findOne(
-    {
-      tran_id: query,
-    },
-
-    (err, data) => {
-      if (err) {
-        res.status(400).json({ status: 400, error: true, message: err });
-      } else {
-        if (data) {
-          res.status(200).json({
-            status: 200,
-            error: false,
-            message: "fetch successfully",
-            data: data,
-          });
-        }
-      }
-    }
-  );
 };
 
 exports.FailPayment = async (req, res) => {
