@@ -11,6 +11,7 @@ const eventRoute = require("./src/View/EventRoute");
 const userRoute = require("./src/View/UserRoute");
 const cartRoute = require("./src/View/CartRoute");
 const dashboardRoute = require("./src/View/DashboardRoute")
+const quizRoute = require("./src/View/QuizRoute")
 require("dotenv").config();
 const port = process.env.PORT || 5000;
 
@@ -41,6 +42,7 @@ app.use("/event", eventRoute);
 app.use("/signin", userRoute);
 app.use("/cart", cartRoute);
 app.use("/dashboard", dashboardRoute);
+app.use("/quiz", quizRoute);
 
 // cors error resolve
 app.all("*", function (req, res, next) {
