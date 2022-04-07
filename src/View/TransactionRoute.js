@@ -4,7 +4,8 @@ const {
   succesPayment,
   FailPayment,
   TransactionHistory,
-} = require("../Controllers/transactionControllers");
+} = require("../Controllers/TransactionControllers");
+
 const checkLogin = require("../Middleware/CheckLogin");
 const router = express.Router();
 
