@@ -1,6 +1,7 @@
 const SSLCommerzPayment = require("sslcommerz");
 const { v4: uuidv4 } = require("uuid");
 const CartModel = require("../Models/CartModel");
+const DashboardModel = require("../Models/DashboardModel");
 const TransactionModel = require("../Models/TransactionModal");
 const transactionModel = require("../Models/TransactionModal");
 
@@ -92,7 +93,15 @@ exports.succesPayment = async (req, res) => {
           (err, item) => {
             console.log(err, item);
             if (err) {
-              res.status(400).json({ status: 400, error: true, message: err });
+              res.status(400).json({ error: true, message: err });
+            } else {
+              res
+                .status(200)
+                .json({
+                  error: false,
+                  data: data,
+                  message: "data fetch succesfully",
+                });
             }
           }
         );
