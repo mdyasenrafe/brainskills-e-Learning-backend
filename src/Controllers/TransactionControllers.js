@@ -14,7 +14,7 @@ exports.postPayment = async (req, res) => {
     total_amount: 400,
     currency: "BDT",
     tran_id: uuidv4(),
-    success_url: "http://localhost:5000/payment/success",
+    success_url: "http://localhost:5001/payment/success",
     fail_url: "https://brainskillapi.herokuapp.com/payment/failure",
     cancel_url: "https://brainskillapi.herokuapp.com/payment/cancel",
     ipn_url: "https://brainskillapi.herokuapp.com/payment/ipn",
@@ -59,7 +59,7 @@ exports.postPayment = async (req, res) => {
     paymentStatus: paymentData?.paymentStatus,
     courses: req.body.courses,
   };
-
+  console.log(postBody);
   sslcommer.init(paymentData).then(async (data) => {
     TransactionModel.create(postBody, (err, item) => {
       if (err) {
@@ -141,7 +141,7 @@ exports.canceelPayment = async (req, res) => {
 
 // transction history
 exports.TransactionHistory = async (req, res) => {
-  transactionModel.find({ _id: req.id }, (err, data) => {
+  TransactionModel.find({ _id: req.id }, (err, data) => {
     if (err) {
       res.status(400).json({ status: 400, error: true, message: err });
     } else {

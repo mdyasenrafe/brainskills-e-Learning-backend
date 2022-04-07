@@ -16,7 +16,7 @@ const quizRoute = require("./src/View/QuizRoute");
 const transctionRoute = require("./src/View/TransactionRoute");
 
 require("dotenv").config();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5001;
 
 // file call
 const app = express();

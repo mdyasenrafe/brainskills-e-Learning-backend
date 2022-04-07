@@ -11,7 +11,9 @@ const TransactionSchema = new Schema({
   userPhoneNumber: {
     type: String,
   },
-
+  tran_id: {
+    type: String,
+  },
   userEmail: {
     type: String,
   },
