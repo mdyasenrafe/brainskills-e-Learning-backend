@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 
 // file
 const courseRoute = require("./src/View/CourseRoute");
+const transctionRoute = require("./src/View/TransactionRoute");
 const instructorRoute = require("./src/View/InstructorRoute");
 const blogRoute = require("./src/View/BlogRoute");
 const reviewRoute = require("./src/View/ReviewRoute");
@@ -13,7 +14,6 @@ const userRoute = require("./src/View/UserRoute");
 const cartRoute = require("./src/View/CartRoute");
 const dashboardRoute = require("./src/View/DashboardRoute");
 const quizRoute = require("./src/View/QuizRoute");
-const transctionRoute = require("./src/View/TransactionRoute");
 
 require("dotenv").config();
 const port = process.env.PORT || 5001;
@@ -45,9 +45,9 @@ app.use("/review", reviewRoute);
 app.use("/event", eventRoute);
 app.use("/signin", userRoute);
 app.use("/cart", cartRoute);
+app.use("/payment", transctionRoute);
 app.use("/dashboard", dashboardRoute);
 app.use("/quiz", quizRoute);
-app.use("/payment", transctionRoute);
 
 // cors error resolve
 app.all("*", function (req, res, next) {
