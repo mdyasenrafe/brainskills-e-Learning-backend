@@ -3,7 +3,6 @@ const express = require("express");
 const cors = require("cors");
 const { v4: uuidv4 } = require("uuid");
 const CartModel = require("../Models/CartModel");
-const DashboardModel = require("../Models/DashboardModel");
 const TransactionModel = require("../Models/TransactionModal");
 
 const app = express();
@@ -12,10 +11,10 @@ app.use(cors());
 
 exports.postPayment = async (req, res) => {
   const paymentData = {
-    total_amount: req.body.amount,
+    total_amount: 400,
     currency: "BDT",
     tran_id: uuidv4(),
-    success_url: "https://brainskillapi.herokuapp.com/payment/success",
+    success_url: "http://localhost:5000/payment/success",
     fail_url: "https://brainskillapi.herokuapp.com/payment/failure",
     cancel_url: "https://brainskillapi.herokuapp.com/payment/cancel",
     ipn_url: "https://brainskillapi.herokuapp.com/payment/ipn",
@@ -23,16 +22,16 @@ exports.postPayment = async (req, res) => {
     product_name: "course",
     product_category: "Salary",
     product_profile: "general",
-    cus_name: req.body.userName,
-    cus_email: req.body.userEmail,
+    cus_name: "req.body.userName",
+    cus_email: "req.body.userEmail",
     cus_add1: "Dhaka",
     cus_city: "Dhaka",
     cus_postcode: "1000",
     cus_country: "Bangladesh",
     // cus_phone: "018258746987",
     // cus_fax: "018258746987",
-    cus_phone: req.body.userPhoneNumber,
-    cus_fax: req.body.userPhoneNumber,
+    cus_phone: "req.body.userPhoneNumber",
+    cus_fax: "req.body.userPhoneNumber",
     ship_name: "Customer Name",
     ship_add1: "Dhaka",
     ship_add2: "Dhaka",
@@ -66,19 +65,19 @@ exports.postPayment = async (req, res) => {
       if (err) {
         res.status(400).json({ status: 400, error: true, message: err });
       } else {
-        res.status(200).json({
-          error: false,
-          data: item,
-          url: data.GatewayPageURL,
-          message: "data fetched succesfully",
-        });
+        // res.status(200).json({
+        //   error: false,
+        //   data: item,
+        //   url: data.GatewayPageURL,
+        //   message: "data fetched succesfully",
+        // });
+        res.redirect(data.GatewayPageURL);
       }
     });
   });
 };
 
 exports.succesPayment = async (req, res) => {
-  console.log(req.body);
   TransactionModel.updateOne(
     { tran_id: req.body.tran_id },
     {
@@ -97,13 +96,8 @@ exports.succesPayment = async (req, res) => {
             console.log(err, item);
             if (err) {
               res.status(400).json({ error: true, message: err });
-            } else {
-              res.status(200).json({
-                error: false,
-                data: data,
-                message: "data fetch succesfully",
-              });
             }
+            console.log(info, data);
           }
         );
       });
