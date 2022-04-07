@@ -3,9 +3,7 @@ const { v4: uuidv4 } = require("uuid");
 const CartModel = require("../Models/CartModel");
 const DashboardModel = require("../Models/DashboardModel");
 const TransactionModel = require("../Models/TransactionModal");
-const transactionModel = require("../Models/TransactionModal");
 
-app.use(cors());
 exports.postPayment = async (req, res) => {
   const paymentData = {
     total_amount: req.body.amount,
@@ -58,7 +56,7 @@ exports.postPayment = async (req, res) => {
   };
 
   sslcommer.init(paymentData).then(async (data) => {
-    transactionModel.create(postBody, (err, item) => {
+    TransactionModel.create(postBody, (err, item) => {
       if (err) {
         res.status(400).json({ status: 400, error: true, message: err });
       } else {
@@ -75,7 +73,7 @@ exports.postPayment = async (req, res) => {
 
 exports.succesPayment = async (req, res) => {
   console.log(req.body);
-  transactionModel.updateOne(
+  TransactionModel.updateOne(
     { tran_id: req.body.tran_id },
     {
       $set: {
@@ -84,7 +82,7 @@ exports.succesPayment = async (req, res) => {
       },
     },
     (err, info) => {
-      transactionModel.findOne({ tran_id: req.body.tran_id }, (err, data) => {
+      TransactionModel.findOne({ tran_id: req.body.tran_id }, (err, data) => {
         CartModel.deleteMany(
           {
             userId: data.userId,

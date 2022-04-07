@@ -1,5 +1,4 @@
 const express = require("express");
-const {} = require("../Controllers/PaymentController");
 const {
   postPayment,
   succesPayment,
