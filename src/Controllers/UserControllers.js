@@ -188,8 +188,3 @@ exports.getUser = async (req, res) => {
     }
   );
 };
-
-exports.getMethod = async (req, res) => {
-  console.log(req.body);
-  res.status(200).send("this is get method by controller file");
-};

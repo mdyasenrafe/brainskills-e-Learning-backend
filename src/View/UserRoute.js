@@ -4,13 +4,10 @@ const {
   updateUser,
   loginUser,
   getUser,
-  getMethod,
 } = require("../Controllers/UserControllers");
 const checkLogin = require("../Middleware/CheckLogin");
 
 const router = express.Router();
-
-
 
 router.post("/signup", signUpUser);
 router.post("/verifyAceount", updateUser);

@@ -4,20 +4,16 @@ const Schema = mongoose.Schema;
 const TransactionSchema = new Schema({
   userId: {
     type: String,
-    required: true,
   },
   userName: {
     type: String,
-    required: true,
   },
   userPhoneNumber: {
     type: String,
-    required: true,
   },
 
   userEmail: {
     type: String,
-    required: true,
   },
   totalAmount: {
     type: String,
