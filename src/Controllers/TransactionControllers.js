@@ -14,7 +14,8 @@ exports.postPayment = async (req, res) => {
     total_amount: 400,
     currency: "BDT",
     tran_id: uuidv4(),
-    success_url: "http://localhost:5001/payment/success",
+    // success_url: "http://localhost:5001/payment/success",
+    success_url: "https://brainskillapi.herokuapp.com/payment/success",
     fail_url: "https://brainskillapi.herokuapp.com/payment/failure",
     cancel_url: "https://brainskillapi.herokuapp.com/payment/cancel",
     ipn_url: "https://brainskillapi.herokuapp.com/payment/ipn",
@@ -65,13 +66,13 @@ exports.postPayment = async (req, res) => {
       if (err) {
         res.status(400).json({ status: 400, error: true, message: err });
       } else {
-        // res.status(200).json({
-        //   error: false,
-        //   data: item,
-        //   url: data.GatewayPageURL,
-        //   message: "data fetched succesfully",
-        // });
-        res.redirect(data.GatewayPageURL);
+        res.status(200).json({
+          error: false,
+          data: item,
+          url: data.GatewayPageURL,
+          message: "data fetched succesfully",
+        });
+        // res.redirect(data.GatewayPageURL);
       }
     });
   });
