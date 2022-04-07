@@ -6,12 +6,13 @@ const {
   TransactionHistory,
   getSuccesPayment,
 } = require("../Controllers/transactionControllers");
+const checkLogin = require("../Middleware/CheckLogin");
 const router = express.Router();
 
-router.post("/init", postPayment);
-router.post("/success", succesPayment);
-router.post("/failure", FailPayment);
-router.post("/transaction-history", TransactionHistory);
-router.post("/cancel", FailPayment);
+router.post("/init", checkLogin, postPayment);
+router.post("/success", checkLogin, succesPayment);
+router.post("/failure", checkLogin, FailPayment);
+router.post("/transaction-history", checkLogin, TransactionHistory);
+router.post("/cancel", checkLogin, FailPayment);
 
 module.exports = router;
