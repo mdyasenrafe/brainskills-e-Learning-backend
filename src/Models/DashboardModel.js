@@ -16,17 +16,17 @@ const DashboardSchema = new Schema({
   },
   courses: [
     {
-      CourseName: {
+      courseName: {
         type: String,
-        required: true,
       },
-      coursePrice: {
-        type: Number,
-        required: true,
+      courseId: {
+        type: String,
       },
       coursePhoto: {
         type: String,
-        required: true,
+      },
+      coursePrice: {
+        type: String,
       },
     },
   ],

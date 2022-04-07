@@ -25,9 +25,9 @@ const TransactionSchema = new Schema({
   paymentStatus: {
     type: String,
   },
-  Courses: [
+  courses: [
     {
-      courseTitle: {
+      courseName: {
         type: String,
       },
       courseId: {

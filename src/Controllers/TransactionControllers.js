@@ -84,7 +84,6 @@ exports.succesPayment = async (req, res) => {
       },
     },
     (err, info) => {
-      console.log(err, info);
       transactionModel.findOne({ tran_id: req.body.tran_id }, (err, data) => {
         CartModel.deleteMany(
           {
@@ -95,13 +94,11 @@ exports.succesPayment = async (req, res) => {
             if (err) {
               res.status(400).json({ error: true, message: err });
             } else {
-              res
-                .status(200)
-                .json({
-                  error: false,
-                  data: data,
-                  message: "data fetch succesfully",
-                });
+              res.status(200).json({
+                error: false,
+                data: data,
+                message: "data fetch succesfully",
+              });
             }
           }
         );
