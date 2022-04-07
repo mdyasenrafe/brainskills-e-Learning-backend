@@ -87,7 +87,7 @@ exports.succesPayment = async (req, res) => {
       transactionModel.findOne({ tran_id: req.body.tran_id }, (err, data) => {
         CartModel.deleteMany(
           {
-            _id: data.userId,
+            userId: data.userId,
           },
           (err, item) => {
             console.log(err, item);
