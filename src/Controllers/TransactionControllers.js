@@ -1,8 +1,14 @@
 const SSLCommerzPayment = require("sslcommerz");
+const express = require("express");
+const cors = require("cors");
 const { v4: uuidv4 } = require("uuid");
 const CartModel = require("../Models/CartModel");
 const DashboardModel = require("../Models/DashboardModel");
 const TransactionModel = require("../Models/TransactionModal");
+
+const app = express();
+
+app.use(cors());
 
 exports.postPayment = async (req, res) => {
   const paymentData = {
