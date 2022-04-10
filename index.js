@@ -14,7 +14,7 @@ const userRoute = require("./src/View/UserRoute");
 const cartRoute = require("./src/View/CartRoute");
 const dashboardRoute = require("./src/View/DashboardRoute");
 const quizRoute = require("./src/View/QuizRoute");
-
+const answerRoute = require("./src/View/AnswerRoute");
 require("dotenv").config();
 const port = process.env.PORT || 5001;
 
@@ -48,7 +48,7 @@ app.use("/cart", cartRoute);
 app.use("/payment", transctionRoute);
 app.use("/dashboard", dashboardRoute);
 app.use("/quiz", quizRoute);
-
+app.use("/answer", answerRoute);
 // cors error resolve
 app.all("*", function (req, res, next) {
   res.header("Access-Control-Allow-Headers : Origin, Content-Type, Accept");
