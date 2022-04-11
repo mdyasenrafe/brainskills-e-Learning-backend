@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const QuizSchema = new Schema({
+const VideoSchema = new Schema({
   courseId: {
     type: String,
     required: true,
@@ -14,25 +14,18 @@ const QuizSchema = new Schema({
     type: String,
     required: true,
   },
-  quiz: [
+  videos: [
     {
-      quizTitle: {
+      videoTitle: {
         type: String,
       },
-      quizAnswer: {
+
+      videoUrl: {
         type: String,
-      },
-      quizOption: {
-        type: [String],
       },
     },
   ],
-
-  createAt: {
-    type: Date,
-    default: new Date(),
-  },
 });
 
-const QuizModel = mongoose.model("quiz", QuizSchema);
-module.exports = QuizModel;
+const VideoModel = mongoose.model("videos", VideoSchema);
+module.exports = VideoModel;
