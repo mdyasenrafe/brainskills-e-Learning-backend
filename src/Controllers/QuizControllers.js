@@ -24,21 +24,28 @@ exports.getQuiz = async (req, res) => {
   query.skip = size * pageNo;
   query.limit = size;
 
-  quizModel.find(
+  quizModel.count(
     { courseId: req.body?.courseId, lesson: req.body.lesson },
-    (err, data) => {
-      if (err) {
-        res.status(400).json({
-          error: true,
-          message: err,
-        });
-      } else {
-        res.status(200).json({
-          error: false,
-          data: data,
-          message: "data fetch successfully",
-        });
-      }
+    (err, count) => {
+      quizModel.find(
+        { courseId: req.body?.courseId, lesson: req.body.lesson },
+        query,
+        (err, data) => {
+          if (err) {
+            res.status(400).json({
+              error: true,
+              message: err,
+            });
+          } else {
+            res.status(200).json({
+              error: false,
+              data: data,
+              message: "data fetch successfully",
+              count: count,
+            });
+          }
+        }
+      );
     }
   );
 };

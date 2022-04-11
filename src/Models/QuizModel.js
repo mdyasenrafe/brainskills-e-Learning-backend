@@ -14,20 +14,15 @@ const QuizSchema = new Schema({
     type: String,
     required: true,
   },
-  quiz: [
-    {
-      quizTitle: {
-        type: String,
-      },
-      quizAnswer: {
-        type: String,
-      },
-      quizOption: {
-        type: [String],
-      },
-    },
-  ],
-
+  quizTitle: {
+    type: String,
+  },
+  quizAnswer: {
+    type: String,
+  },
+  quizOption: {
+    type: [String],
+  },
   createAt: {
     type: Date,
     default: new Date(),
