@@ -18,8 +18,14 @@ exports.addQuiz = async (req, res) => {
 };
 
 exports.getQuiz = async (req, res) => {
+  let pageNo = parseInt(req.query.page);
+  let size = parseInt(req.query.size);
+  let query = {};
+  query.skip = size * pageNo;
+  query.limit = size;
+
   quizModel.count({ courseId: req.body?.courseId }, (err, count) => {
-    quizModel.find({ courseId: req.body?.courseId }, (err, data) => {
+    quizModel.find({ courseId: req.body?.courseId }, query, (err, data) => {
       if (err) {
         res.status(400).json({
           error: true,
