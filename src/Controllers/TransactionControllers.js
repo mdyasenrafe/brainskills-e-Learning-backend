@@ -102,14 +102,11 @@ exports.succesPayment = async (req, res) => {
             if (err) {
               res.status(400).json({ error: true, message: err });
             } else {
-              DashboardModel.create(
-                (data) => err,
-                (info) => {
-                  if (err) {
-                    res.status(400).json({ error: true, message: err });
-                  }
+              DashboardModel.create(data, (err, info) => {
+                if (err) {
+                  res.status(400).json({ error: true, message: err });
                 }
-              );
+              });
             }
           }
         );
