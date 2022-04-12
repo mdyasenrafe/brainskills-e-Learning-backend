@@ -7,8 +7,7 @@ const DashboardSchema = new Schema({
     required: true,
   },
   userId: {
-    type: Number,
-    required: true,
+    type: String,
   },
   userPhoneNumber: {
     type: Number,
