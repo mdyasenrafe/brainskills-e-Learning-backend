@@ -4,6 +4,7 @@ const cors = require("cors");
 const { v4: uuidv4 } = require("uuid");
 const CartModel = require("../Models/CartModel");
 const TransactionModel = require("../Models/TransactionModal");
+const DashboardModel = require("../Models/DashboardModel");
 
 const app = express();
 
@@ -100,8 +101,16 @@ exports.succesPayment = async (req, res) => {
             console.log(err, item);
             if (err) {
               res.status(400).json({ error: true, message: err });
+            } else {
+              DashboardModel.create(
+                (data) => err,
+                (info) => {
+                  if (err) {
+                    res.status(400).json({ error: true, message: err });
+                  }
+                }
+              );
             }
-            console.log(info, data);
           }
         );
       });
