@@ -101,7 +101,13 @@ exports.succesPayment = async (req, res) => {
             if (err) {
               res.status(400).json({ error: true, message: err });
             } else {
-              DashboardModel.create(data, (err, info) => {
+              let postBody = {
+                userName: data?.userName,
+                userId: data?.userId,
+                courses: data?.courses,
+              };
+
+              DashboardModel.create(postBody, (err, info) => {
                 console.log(err, info);
                 if (err) {
                   res.status(400).json({ error: true, message: err });

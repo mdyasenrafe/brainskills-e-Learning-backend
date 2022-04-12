@@ -4,7 +4,6 @@ const Schema = mongoose.Schema;
 const DashboardSchema = new Schema({
   userName: {
     type: String,
-    required: true,
   },
   userId: {
     type: String,
