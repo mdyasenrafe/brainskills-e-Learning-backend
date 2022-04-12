@@ -1,21 +1,18 @@
 const DashboardModel = require("../Models/DashboardModel");
 
 exports.getDashboard = async (req, res) => {
-  DashboardModel.find(
-    { userPhoneNumber: req.userPhoneNumber, userId: req.id },
-    (err, data) => {
-      if (err) {
-        res.status(400).json({
-          error: true,
-          message: err,
-        });
-      } else {
-        res.status(200).json({
-          error: false,
-          data: data,
-          message: "data fetch successfully",
-        });
-      }
+  DashboardModel.find({ userId: req.id }, (err, data) => {
+    if (err) {
+      res.status(400).json({
+        error: true,
+        message: err,
+      });
+    } else {
+      res.status(200).json({
+        error: false,
+        data: data,
+        message: "data fetch successfully",
+      });
     }
-  );
+  });
 };
