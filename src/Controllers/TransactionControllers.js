@@ -98,11 +98,11 @@ exports.succesPayment = async (req, res) => {
             userId: data.userId,
           },
           (err, item) => {
-            console.log(err, item);
             if (err) {
               res.status(400).json({ error: true, message: err });
             } else {
               DashboardModel.create(data, (err, info) => {
+                console.log(err, info);
                 if (err) {
                   res.status(400).json({ error: true, message: err });
                 }
