@@ -1,7 +1,13 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const VideoSchema = new Schema({
+const BookmarkSchema = new Schema({
+  userId: {
+    type: String,
+  },
+  userPhoneNumber: {
+    type: String,
+  },
   courseId: {
     type: String,
     required: true,
@@ -22,5 +28,5 @@ const VideoSchema = new Schema({
   },
 });
 
-const VideoModel = mongoose.model("videos", VideoSchema);
-module.exports = VideoModel;
+const BookmarkModel = mongoose.model("bookmark", BookmarkSchema);
+module.exports = BookmarkModel;
