@@ -12,7 +12,6 @@ const DashboardSchema = new Schema({
   },
   userPhoneNumber: {
     type: Number,
-    required: true,
   },
   courses: [
     {
