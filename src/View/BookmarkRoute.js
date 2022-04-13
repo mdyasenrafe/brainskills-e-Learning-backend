@@ -3,7 +3,6 @@ const {
   addBookmark,
   GetBookmark,
 } = require("../Controllers/BookmarkControllers");
-
 const checkLogin = require("../Middleware/CheckLogin");
 
 const router = express.Router();

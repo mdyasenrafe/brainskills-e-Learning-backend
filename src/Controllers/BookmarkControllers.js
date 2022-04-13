@@ -1,7 +1,6 @@
-const BookmarkModel = require("../Models/BookmarkModel");
+const BookmarkModel = require("../Models/BookMarkModel");
 
 exports.addBookmark = async (req, res) => {
-  //   const id = req.id;
   BookmarkModel.create(req.body, (err, data) => {
     if (err) {
       res.status(400).json({
