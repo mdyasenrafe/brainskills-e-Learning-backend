@@ -1,4 +1,4 @@
-const BookmarkModel = require("../Models/BookMarkModel");
+const BookmarkModel = require("../Models/BookmarkModel");
 
 exports.addBookmark = async (req, res) => {
   //   const id = req.id;
