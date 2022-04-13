@@ -18,6 +18,20 @@ const CourseSchema = new Schema({
     type: Date,
     default: new Date(),
   },
+  demoVideo: {
+    type: String,
+    required: true,
+  },
+  courseContent: [
+    {
+      contentNumber: {
+        type: String,
+      },
+      contentValue: {
+        type: String,
+      },
+    },
+  ],
   courseCategroy: {
     type: String,
     required: true,
