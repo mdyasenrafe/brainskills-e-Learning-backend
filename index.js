@@ -15,6 +15,7 @@ const cartRoute = require("./src/View/CartRoute");
 const dashboardRoute = require("./src/View/DashboardRoute");
 const quizRoute = require("./src/View/QuizRoute");
 const VideoRoute = require("./src/View/VideoRoute");
+const bookmarkRoute = require("./src/View/BookmarkRoute");
 
 require("dotenv").config();
 const port = process.env.PORT || 5001;
@@ -50,6 +51,7 @@ app.use("/payment", transctionRoute);
 app.use("/dashboard", dashboardRoute);
 app.use("/quiz", quizRoute);
 app.use("/video", VideoRoute);
+app.use("/bookmark", bookmarkRoute);
 
 // cors error resolve
 app.all("*", function (req, res, next) {

@@ -1,6 +1,6 @@
 const BookmarkModel = require("../Models/BookMarkModel");
 
-exports.addCart = async (req, res) => {
+exports.addBookmark = async (req, res) => {
   //   const id = req.id;
   BookmarkModel.create(req.body, (err, data) => {
     if (err) {
@@ -18,8 +18,8 @@ exports.addCart = async (req, res) => {
   });
 };
 
-exports.getCart = async (req, res) => {
-  CartModel.find(
+exports.GetBookmark = async (req, res) => {
+  BookmarkModel.find(
     { userPhoneNumber: req.userPhoneNumber, userId: req.id },
     (err, data) => {
       if (err) {
