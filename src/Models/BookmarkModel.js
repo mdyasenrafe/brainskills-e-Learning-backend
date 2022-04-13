@@ -10,15 +10,12 @@ const BookmarkSchema = new Schema({
   },
   courseId: {
     type: String,
-    required: true,
   },
   courseName: {
     type: String,
-    required: true,
   },
   lesson: {
     type: String,
-    required: true,
   },
   videoTitle: {
     type: String,
