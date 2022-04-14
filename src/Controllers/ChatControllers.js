@@ -1,5 +1,6 @@
+const asyncHandler = require("express-async-handler");
 const Chat = require("../Models/ChatModel");
-const User = require("../models/userModel");
+const User = require("../Models/UserModel");
 
 
 const accessChat = asyncHandler(async (req, res) => {
@@ -69,9 +70,7 @@ const fetchChats = asyncHandler(async (req, res) => {
   }
 });
 
-//@description     Create New Group Chat
-//@route           POST /api/chat/group
-//@access          Protected
+
 const createGroupChat = asyncHandler(async (req, res) => {
   if (!req.body.users || !req.body.name) {
     return res.status(400).send({ message: "Please Fill all the feilds" });
@@ -130,9 +129,7 @@ const renameGroup = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Remove user from Group
-// @route   PUT /api/chat/groupremove
-// @access  Protected
+
 const removeFromGroup = asyncHandler(async (req, res) => {
   const { chatId, userId } = req.body;
 
