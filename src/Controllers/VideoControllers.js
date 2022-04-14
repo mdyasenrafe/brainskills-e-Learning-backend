@@ -1,8 +1,8 @@
-const BlogModel = require("../Models/BlogModel");
+const VideoModel = require("../Models/VideoModel");
 
-exports.addBlog = async (req, res) => {
-  // create
-  BlogModel.create(req.body, (err, data) => {
+exports.addVideo = async (req, res) => {
+  VideoModel.create(req.body, (err, data) => {
+    console.log(req.body);
     if (err) {
       res.status(400).json({
         error: true,
@@ -13,13 +13,12 @@ exports.addBlog = async (req, res) => {
         error: false,
         message: data,
       });
-      ``;
     }
   });
 };
 
-exports.getBlog = async (req, res) => {
-  BlogModel.find({}, (err, data) => {
+exports.getVideo = async (req, res) => {
+  VideoModel.find({ courseId: req.body?.courseId }, (err, data) => {
     if (err) {
       res.status(400).json({
         error: true,
@@ -29,6 +28,7 @@ exports.getBlog = async (req, res) => {
       res.status(200).json({
         error: false,
         data: data,
+        count: count,
         message: "data fetch successfully",
       });
     }
