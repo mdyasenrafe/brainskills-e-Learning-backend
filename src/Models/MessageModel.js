@@ -3,10 +3,10 @@ const Schema = mongoose.Schema;
 
 const MessageSchema = new Schema(
   {
-    sender: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    sender: { type: mongoose.Schema.Types.ObjectId, ref: "UserModel" },
     content: { type: String, trim: true },
-    chat: { type: mongoose.Schema.Types.ObjectId, ref: "Chat" },
-    readBy: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+    chat: { type: mongoose.Schema.Types.ObjectId, ref: "ChatModel" },
+    readBy: [{ type: mongoose.Schema.Types.ObjectId, ref: "UserModel" }],
   },
   { timestamps: true }
 );
