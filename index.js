@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 // file
 const courseRoute = require("./src/View/CourseRoute");
 const instructorRoute = require("./src/View/InstructorRoute");
+const quizRoute = require("./src/View/quizRoute");
 const blogRoute = require("./src/View/BlogRoute");
 const reviewRoute = require("./src/View/ReviewRoute");
 const eventRoute = require("./src/View/EventRoute");
@@ -35,6 +36,7 @@ mongoose
 // routing
 app.use("/course", courseRoute);
 app.use("/instructor", instructorRoute);
+app.use("/quizRoute", quizRoute);
 app.use("/blog", blogRoute);
 app.use("/review", reviewRoute);
 app.use("/event", eventRoute);
