@@ -120,7 +120,9 @@ exports.succesPayment = async (req, res) => {
     }
   );
 
-  res.redirect(`http://localhost:3000/payment/success/${req.body.tran_id}`);
+  res.redirect(
+    `https://brain-skill.netlify.app/payment/success/${req.body.tran_id}`
+  );
 };
 
 exports.FailPayment = async (req, res) => {
@@ -135,7 +137,9 @@ exports.FailPayment = async (req, res) => {
     },
     (err, data) => {}
   );
-  res.redirect(`http://localhost:3000/payment/failure/${req.body.tran_id}`);
+  res.redirect(
+    `https://brain-skill.netlify.app/payment/failure/${req.body.tran_id}`
+  );
 };
 
 exports.canceelPayment = async (req, res) => {
