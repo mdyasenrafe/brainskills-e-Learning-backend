@@ -1,25 +1,34 @@
 const SSLCommerzPayment = require("sslcommerz");
+const express = require("express");
+const cors = require("cors");
 const { v4: uuidv4 } = require("uuid");
 const CartModel = require("../Models/CartModel");
 const TransactionModel = require("../Models/TransactionModal");
-const transactionModel = require("../Models/TransactionModal");
+const DashboardModel = require("../Models/DashboardModel");
+
+const app = express();
 
 app.use(cors());
+
 exports.postPayment = async (req, res) => {
   const paymentData = {
-    total_amount: req.body.amount,
+    total_amount: req.body?.totalAmount,
+    // total_amount: 400,
     currency: "BDT",
     tran_id: uuidv4(),
-    success_url: "http://localhost:5000/payment/success",
-    fail_url: "http://localhost:5000/payment/failure",
-    cancel_url: "http://localhost:5000/payment/cancel",
-    ipn_url: "http://localhost:5000/payment/ipn",
+    // success_url: "http://localhost:5001/payment/success",
+    success_url: "https://brainskillapi.herokuapp.com/payment/success",
+    fail_url: "https://brainskillapi.herokuapp.com/payment/failure",
+    cancel_url: "https://brainskillapi.herokuapp.com/payment/cancel",
+    ipn_url: "https://brainskillapi.herokuapp.com/payment/ipn",
     shipping_method: "Courier",
     product_name: "course",
     product_category: "Salary",
     product_profile: "general",
     cus_name: req.body.userName,
     cus_email: req.body.userEmail,
+    // cus_name: "req.body.userName",
+    // cus_email: "req.body.userEmail",
     cus_add1: "Dhaka",
     cus_city: "Dhaka",
     cus_postcode: "1000",
@@ -55,9 +64,9 @@ exports.postPayment = async (req, res) => {
     paymentStatus: paymentData?.paymentStatus,
     courses: req.body.courses,
   };
-
+  console.log(postBody);
   sslcommer.init(paymentData).then(async (data) => {
-    transactionModel.create(postBody, (err, item) => {
+    TransactionModel.create(postBody, (err, item) => {
       if (err) {
         res.status(400).json({ status: 400, error: true, message: err });
       } else {
@@ -67,14 +76,14 @@ exports.postPayment = async (req, res) => {
           url: data.GatewayPageURL,
           message: "data fetched succesfully",
         });
+        // res.redirect(data.GatewayPageURL);
       }
     });
   });
 };
 
 exports.succesPayment = async (req, res) => {
-  console.log(req.body);
-  transactionModel.updateOne(
+  TransactionModel.updateOne(
     { tran_id: req.body.tran_id },
     {
       $set: {
@@ -83,24 +92,27 @@ exports.succesPayment = async (req, res) => {
       },
     },
     (err, info) => {
-      console.log(err, info);
-      transactionModel.findOne({ tran_id: req.body.tran_id }, (err, data) => {
-        console.log(data, err);
-        let updateBody = {
-          studentMonth: 0,
-          studentTotalAmount: 0,
-          due: data.remainingMonth,
-          paid: data?.paidHistory + data?.studentMonth,
-          totalDueAmount: data?.remainingMonth * data.totalAmount,
-        };
+      TransactionModel.findOne({ tran_id: req.body.tran_id }, (err, data) => {
         CartModel.deleteMany(
           {
-            _id: u,
+            userId: data.userId,
           },
           (err, item) => {
-            console.log(err, item);
             if (err) {
-              res.status(400).json({ status: 400, error: true, message: err });
+              res.status(400).json({ error: true, message: err });
+            } else {
+              let postBody = {
+                userName: data?.userName,
+                userId: data?.userId,
+                courses: data?.courses,
+              };
+
+              DashboardModel.create(postBody, (err, info) => {
+                console.log(err, info);
+                if (err) {
+                  res.status(400).json({ error: true, message: err });
+                }
+              });
             }
           }
         );
@@ -108,30 +120,8 @@ exports.succesPayment = async (req, res) => {
     }
   );
 
-  res.redirect(`http://localhost:3000/payment/success/${req.body.tran_id}`);
-};
-// get success payment data
-exports.getSuccesPayment = async (req, res) => {
-  const query = req.params.id;
-  TransactionModel.findOne(
-    {
-      tran_id: query,
-    },
-
-    (err, data) => {
-      if (err) {
-        res.status(400).json({ status: 400, error: true, message: err });
-      } else {
-        if (data) {
-          res.status(200).json({
-            status: 200,
-            error: false,
-            message: "fetch successfully",
-            data: data,
-          });
-        }
-      }
-    }
+  res.redirect(
+    `https://brain-skill.netlify.app/payment/success/${req.body.tran_id}`
   );
 };
 
@@ -147,7 +137,9 @@ exports.FailPayment = async (req, res) => {
     },
     (err, data) => {}
   );
-  res.redirect(`http://localhost:3000/payment/failure/${req.body.tran_id}`);
+  res.redirect(
+    `https://brain-skill.netlify.app/payment/failure/${req.body.tran_id}`
+  );
 };
 
 exports.canceelPayment = async (req, res) => {
@@ -169,7 +161,7 @@ exports.canceelPayment = async (req, res) => {
 
 // transction history
 exports.TransactionHistory = async (req, res) => {
-  transactionModel.find({ _id: req.id }, (err, data) => {
+  TransactionModel.find({ _id: req.id }, (err, data) => {
     if (err) {
       res.status(400).json({ status: 400, error: true, message: err });
     } else {

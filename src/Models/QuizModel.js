@@ -1,31 +1,33 @@
 const mongoose = require("mongoose");
-const { stringify } = require("uuid");
 const Schema = mongoose.Schema;
 
 const QuizSchema = new Schema({
-    question: {
+    courseId: {
         type: String,
         required: true,
     },
-    isQuiz: {
-        default: true,
+    courseName: {
+        type: String,
+        required: true,
     },
-    AnswersText: [
-        {
-            Answers: {
-                type: String,
-                required: true,
-            },
-            isCorrect: {
-                default: false,
-            }
-        },
-    ],
+    lesson: {
+        type: String,
+        required: true,
+    },
+    quizTitle: {
+        type: String,
+    },
+    quizAnswer: {
+        type: String,
+    },
+    quizOption: {
+        type: [String],
+    },
     createAt: {
         type: Date,
         default: new Date(),
     },
 });
 
-const quizModel = mongoose.model("quiz", QuizSchema);
-module.exports = quizModel;
+const QuizModel = mongoose.model("quiz", QuizSchema);
+module.exports = QuizModel;

@@ -1,8 +1,7 @@
-const CartModel = require("../Models/CartModel");
+const BookmarkModel = require("../Models/BookmarkModel");
 
-exports.addCart = async (req, res) => {
-  //   const id = req.id;
-  CartModel.create(req.body, (err, data) => {
+exports.addBookmark = async (req, res) => {
+  BookmarkModel.create(req.body, (err, data) => {
     if (err) {
       res.status(400).json({
         error: true,
@@ -12,13 +11,14 @@ exports.addCart = async (req, res) => {
       res.status(200).json({
         error: false,
         data: data,
+        message: "data fetch succesfully",
       });
     }
   });
 };
 
-exports.getCart = async (req, res) => {
-  CartModel.find(
+exports.GetBookmark = async (req, res) => {
+  BookmarkModel.find(
     { userPhoneNumber: req.userPhoneNumber, userId: req.id },
     (err, data) => {
       if (err) {
