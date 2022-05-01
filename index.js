@@ -14,7 +14,6 @@ const eventRoute = require("./src/View/EventRoute");
 const userRoute = require("./src/View/UserRoute");
 const cartRoute = require("./src/View/CartRoute");
 const dashboardRoute = require("./src/View/DashboardRoute");
-const quizRoute = require("./src/View/QuizRoute");
 const VideoRoute = require("./src/View/VideoRoute");
 const bookmarkRoute = require("./src/View/BookmarkRoute");
 

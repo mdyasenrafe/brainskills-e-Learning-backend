@@ -1,14 +1,7 @@
-<<<<<<< HEAD
-const QuizModel = require("../Models/QuizModel");
-
-exports.addQuiz = async (req, res) => {
-  QuizModel.create(req.body, (err, data) => {
-=======
 const quizModel = require("../Models/QuizModel.js");
 
 exports.addQuiz = async (req, res) => {
   quizModel.create(req.body, (err, data) => {
->>>>>>> 1d52531abd82499e5643cc435e662b38711c5d16
     console.log(req.body);
     if (err) {
       res.status(400).json({
@@ -25,22 +18,6 @@ exports.addQuiz = async (req, res) => {
 };
 
 exports.getQuiz = async (req, res) => {
-<<<<<<< HEAD
-  QuizModel.find({}, (err, data) => {
-    if (err) {
-      res.status(400).json({
-        error: true,
-        message: err,
-      });
-    } else {
-      res.status(200).json({
-        error: false,
-        data: data,
-        message: "data fetch successfully",
-      });
-    }
-  });
-=======
   let pageNo = parseInt(req.query.page);
   let size = parseInt(req.query.size);
   let query = {};
@@ -71,5 +48,4 @@ exports.getQuiz = async (req, res) => {
       );
     }
   );
->>>>>>> 1d52531abd82499e5643cc435e662b38711c5d16
 };
