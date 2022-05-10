@@ -14,6 +14,7 @@ const EventSchema = new Schema({
     type: Date,
     require: true,
   },
+  // trying deploy
   eventLink: {
     type: String,
   },
