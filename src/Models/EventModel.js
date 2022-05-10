@@ -14,6 +14,9 @@ const EventSchema = new Schema({
     type: Date,
     require: true,
   },
+  eventLink: {
+    type: String,
+  },
   speaker: {
     type: String,
     require: true,
