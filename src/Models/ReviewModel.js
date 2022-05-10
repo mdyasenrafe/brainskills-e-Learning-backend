@@ -7,9 +7,6 @@ const ReviewSchema = new Schema({
     type: String,
     require: true,
   },
-  courseName: {
-    type: String,
-  },
   courseId: {
     type: String,
   },
@@ -33,7 +30,6 @@ const ReviewSchema = new Schema({
     type: Number,
     require: true,
   },
-
   CreatAt: {
     type: Date,
     default: new Date(),

@@ -1,7 +1,8 @@
-const instructorModel = require("../Models/instructorModel");
+const VideoModel = require("../Models/VideoModel");
 
-exports.addInstructor = async (req, res) => {
-  instructorModel.create(req.body, (err, data) => {
+exports.addVideo = async (req, res) => {
+  VideoModel.create(req.body, (err, data) => {
+    console.log(req.body);
     if (err) {
       res.status(400).json({
         error: true,
@@ -16,8 +17,8 @@ exports.addInstructor = async (req, res) => {
   });
 };
 
-exports.getInstructor = async (req, res) => {
-  instructorModel.find({}, (err, data) => {
+exports.getVideo = async (req, res) => {
+  VideoModel.find({ courseId: req.body?.courseId }, (err, data) => {
     if (err) {
       res.status(400).json({
         error: true,
@@ -27,6 +28,7 @@ exports.getInstructor = async (req, res) => {
       res.status(200).json({
         error: false,
         data: data,
+        count: count,
         message: "data fetch successfully",
       });
     }

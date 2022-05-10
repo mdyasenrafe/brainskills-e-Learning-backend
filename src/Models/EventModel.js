@@ -10,9 +10,15 @@ const EventSchema = new Schema({
     type: String,
     require: true,
   },
+  // date
   eventDate: {
     type: Date,
     require: true,
+  },
+  // trying deploy 2
+  // trying deploy
+  eventLink: {
+    type: String,
   },
   speaker: {
     type: String,
