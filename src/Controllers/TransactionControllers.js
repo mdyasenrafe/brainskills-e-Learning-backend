@@ -156,7 +156,7 @@ exports.canceelPayment = async (req, res) => {
       console.log(data);
     }
   );
-  res.redirect(`http://localhost:3000`);
+  res.redirect(`https://brainskillapi.herokuapp.com`);
 };
 
 // transction history
