@@ -17,10 +17,7 @@ const BlogSchema = new Schema({
   categroy: {
     type: String,
   },
-  blogShortDescription: {
-    type: String,
-    required: true,
-  },
+
   blogLongdescription: {
     type: String,
   },
