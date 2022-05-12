@@ -14,6 +14,7 @@ const BlogSchema = new Schema({
     type: Date,
     default: new Date(),
   },
+  //
   categroy: {
     type: String,
   },
