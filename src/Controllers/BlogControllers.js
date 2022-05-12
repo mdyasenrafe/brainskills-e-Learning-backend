@@ -35,7 +35,7 @@ exports.getBlog = async (req, res) => {
   });
 };
 exports.getSingleBlog = async (req, res) => {
-  BlogModel.findOne({ id: req?.body?.id }, (err, data) => {
+  BlogModel.findOne({ _id: req?.body?.id }, (err, data) => {
     if (err) {
       res.status(400).json({
         error: true,
