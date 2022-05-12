@@ -34,3 +34,19 @@ exports.getBlog = async (req, res) => {
     }
   });
 };
+exports.getSingleBlog = async (req, res) => {
+  BlogModel.find({ id: req?.body?.id }, (err, data) => {
+    if (err) {
+      res.status(400).json({
+        error: true,
+        message: err,
+      });
+    } else {
+      res.status(200).json({
+        error: false,
+        data: data,
+        message: "data fetch successfully",
+      });
+    }
+  });
+};
