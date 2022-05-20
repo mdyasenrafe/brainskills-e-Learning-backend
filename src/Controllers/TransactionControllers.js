@@ -156,7 +156,7 @@ exports.canceelPayment = async (req, res) => {
       console.log(data);
     }
   );
-  res.redirect(`https://brainskillapi.herokuapp.com`);
+  res.redirect(`https://morning-headland-94658.herokuapp.com/`);
 };
 
 // transction history
